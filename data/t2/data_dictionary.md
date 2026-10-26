@@ -2,9 +2,9 @@
 
 Dataset: **T2 ETF Data Pack**  
 Prepared on: 2026-09-25  
-Status: instructor-prepared classroom data; classroom trial pending.
+Status: instructor-prepared classroom data.
 
-The instructor prepared the inputs in advance. In T2, your Agent checks the daily data, writes and runs a small calculation, and produces a comparison report. You personally verify one result. Maximum drawdowns, cumulative highs, and selected peak/trough answers are deliberately absent from these input files.
+The instructor prepared the inputs in advance. In T2, your Agent checks the daily data, writes and runs a small calculation, and produces a comparison report with an Agent Check. You review its actual tool evidence. Maximum drawdowns, cumulative highs, and selected peak/trough answers are deliberately absent from these input files.
 
 ## 1. Files and fields
 
@@ -54,7 +54,7 @@ max_drawdown_pct = minimum drawdown_t_pct across the full window
 
 The high must occur on or before the selected trough. Taking the global highest and lowest prices without checking their order is invalid. When extrema tie, select the earliest trough and its earliest corresponding peak. If no loss occurs, use the first observation for both dates and zero drawdown.
 
-Keep full precision during calculation; display maximum drawdowns to two decimal places in the report. Values are non-positive; closer to zero means a smaller loss magnitude. Compare the displayed two-decimal results for the required observation and include any ties. Record calculated peak/trough dates in the table; retain their full-precision adjusted prices for your manual check. No target answers are provided here.
+Keep full precision during calculation; display maximum drawdowns to two decimal places in the report. Values are non-positive; closer to zero means a smaller loss magnitude. Compare the displayed two-decimal results for the required observation and include any ties. Record calculated peak/trough dates in the table; retain their full-precision adjusted prices for the Agent Check. No target answers are provided here.
 
 ## 3. Source provenance
 
@@ -68,7 +68,9 @@ The API's end timestamp is exclusive (2026-09-01); the final included session is
 
 ## 4. Your check and optional collection practice
 
-After the Agent calculates the report, choose one ETF. Locate its reported peak and trough in `daily_prices.csv`, read the two `adjusted_close` values yourself, and use a calculator to check `(trough / peak - 1) * 100`. Record the ticker, dates, values, your result, comparison with the report, and your own judgment. Also review the three displayed drawdowns to check the observation. A two-point arithmetic check does not prove the selected pair is the worst in the whole window: inspect the Agent's full-series method as well.
+After drafting the T2 report, the same Agent chooses one ETF, uses local tools to re-read the reported peak/trough rows from `daily_prices.csv`, and recomputes `(trough / peak - 1) * 100` with code. It records the source values, actual command/result, comparison, method review and any correction/recheck. You review this evidence and request missing checks or corrections. No handwritten check is required. A two-point arithmetic check does not prove the selected pair is the worst in the whole window; the Agent must also review the full-series method and comparison across all three ETFs. This is a self-check, not independent verification.
+
+T3 adds a separate Reviewer and uses the portfolio-specific design, freeze and test rules in `tasks/t3_portfolio_research.md`. Follow that brief for the T3 date windows, portfolio calculations and acceptance requirements.
 
 You may practise gathering your own data after the required task: record source URL, access date, units, dates, adjustment method, and permitted use; keep it under `artifacts/t2/exploration/`. Compare it with the frozen inputs and your calculated result, explaining differences. Keep the required input files unchanged. Optional collection adds no mandatory submission.
 
